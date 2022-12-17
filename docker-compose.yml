@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  nats:
+    image: nats-streaming:latest
+    entrypoint:
+      - /nats-streaming-server
+      - -cid
+      - crypto-cluster
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    restart: always
+    tty: true
+
+  depthquotes.pub:
+    image: ${DOCKER_REGISTRY-}marketdepthpub
+    build:
+      context: .
+      dockerfile: src/MarketDepth.Pub/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - nats
