@@ -8,6 +8,15 @@ This is an example .Net project for running local development environment. It fe
 * [Publisher](publisher/main.go) and [Subscriber](subscriber/main.go) services
 * Communication over [NATS](https://nats.io/) between two services
 
+## Setting up
+
+Put your Binance API keys into .env file
+
+```
+BINANCE_API_KEY=
+BINANCE_SECRET_KEY=
+```
+
 ## Running
 
 To start the services, simply run:
