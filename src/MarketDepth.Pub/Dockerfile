@@ -5,7 +5,7 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["src/MarketDepth.Pub/DepthQuotes.Pub.csproj", "src/MarketDepth.Pub/"]
+COPY ["src/MarketDepth.Pub/MarketDepth.Pub.csproj", "src/MarketDepth.Pub/"]
 RUN dotnet restore "src/MarketDepth.Pub/MarketDepth.Pub.csproj"
 COPY . .
 WORKDIR "/src/src/MarketDepth.Pub"

@@ -1,49 +1,50 @@
 using MarketDepth.Application.Contracts;
-using MarketDepth.Domain.Models;
-using System;
-using System.Runtime.Serialization.Formatters.Binary;
+using MarketDepth.Infrastructure.Utils;
 using System.Text.Json;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace MarketDepth.NatsIO.Pub
+namespace MarketDepth.Pub
 {
-    public class DepthPublisher : BackgroundService
+    public sealed class DepthPublisher : BackgroundService
     {
         private readonly ILogger<DepthPublisher> _logger;
         private readonly IExchangeSocketClient _exchangeSocketClient;
-        private readonly IMessageBusPublisher _messageBus;
+        private readonly IMessageBusClient _messageBus;
+        private readonly string _symbol;
+        private Guid _exchangeSocketGuid;
 
-        public DepthPublisher(ILogger<DepthPublisher> logger, 
+        public DepthPublisher(ILogger<DepthPublisher> logger,
             IExchangeSocketClient exchangeSocketClient,
-            IMessageBusPublisher messageBus)
+            IMessageBusClient messageBus,
+            IConfiguration config)
         {
             _logger = logger;
             _exchangeSocketClient = exchangeSocketClient;
             _messageBus = messageBus;
+            _symbol = config.GetVarFromEnvironment("SYMBOL") ??
+                throw new Exception($"Environment variable required: SYMBOL");
         }
-
         protected override async Task ExecuteAsync(CancellationToken ct)
         {
-            var guid = _exchangeSocketClient.ConnectToDepthWebSocket(async (depthData) =>
+            _exchangeSocketGuid = _exchangeSocketClient.ConnectToDepthWebSocket(_symbol, async (depthData) =>
             {
-                Console.WriteLine($"Depth Event: {depthData.EventType} {
-                    depthData.EventTime} {depthData.Symbol} {depthData.UpdateId}");
+                Console.WriteLine($"[Binance Event]: {depthData.EventType} {depthData.EventTime} {depthData.Symbol} {depthData.UpdateId}");
 
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    await JsonSerializer.SerializeAsync(ms, depthData);
-                    await _messageBus.Publish(depthData.Symbol, ms.ToArray());
-                }
+                var payload = JsonSerializer.SerializeToUtf8Bytes(depthData, depthData.GetType());
+
+                string guid = _messageBus.Publish(payload);
             });
 
             while (!ct.IsCancellationRequested)
             {
-                _logger.LogInformation("Publisher running at: {time}", DateTimeOffset.Now);
-
-                await Task.Delay(1000, ct);
+                await Task.Delay(10000, ct);
             }
+        }
 
-            _exchangeSocketClient.CloseWebSocketInstance(guid);
+        public override Task StopAsync(CancellationToken cancellationToken)
+        {
+            _exchangeSocketClient.CloseWebSocketInstance(_exchangeSocketGuid);
+
+            return base.StopAsync(cancellationToken);
         }
     }
 }

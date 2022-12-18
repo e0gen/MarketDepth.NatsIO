@@ -9,6 +9,8 @@
   <ItemGroup>
     <PackageReference Include="BinanceDotNet" Version="4.12.0" />
     <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1" />
     <PackageReference Include="STAN.Client" Version="0.3.0" />
   </ItemGroup>
 

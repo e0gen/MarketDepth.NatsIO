@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.Pub", "src\Mark
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BB2DFF9A-264E-4DF4-996F-7A2C2747F805}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.Sub", "src\MarketDepth.Sub\MarketDepth.Sub.csproj", "{6F431C79-8E08-436A-A078-80132C05347A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{BB2DFF9A-264E-4DF4-996F-7A2C2747F805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB2DFF9A-264E-4DF4-996F-7A2C2747F805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB2DFF9A-264E-4DF4-996F-7A2C2747F805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F431C79-8E08-436A-A078-80132C05347A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F431C79-8E08-436A-A078-80132C05347A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F431C79-8E08-436A-A078-80132C05347A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F431C79-8E08-436A-A078-80132C05347A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{8139CD73-A238-4BFE-94ED-AA909DF565A6} = {EAD23AA7-4F67-43A8-A7CD-EFD42B939FF0}
 		{8514095B-A64B-402C-A140-B2E921C5EF83} = {EAD23AA7-4F67-43A8-A7CD-EFD42B939FF0}
 		{E47A03E7-C290-4AE7-A62C-51B804AED135} = {EAD23AA7-4F67-43A8-A7CD-EFD42B939FF0}
+		{6F431C79-8E08-436A-A078-80132C05347A} = {EAD23AA7-4F67-43A8-A7CD-EFD42B939FF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE8E31AA-3F2E-4B84-864F-8B68E07B27B5}

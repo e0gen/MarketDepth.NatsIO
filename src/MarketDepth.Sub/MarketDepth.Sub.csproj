@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-MarketDepth.Pub-F5B2D1CE-0C0B-409B-B017-AF888406371D</UserSecretsId>
+    <UserSecretsId>dotnet-MarketDepth.Sub-5ee4811e-60ba-4444-94f4-81d297563787</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MarketDepth.Domain\MarketDepth.Domain.csproj" />
     <ProjectReference Include="..\MarketDepth.Infrastructure\MarketDepth.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
