@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EAD23AA7-4F6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{35334E61-07E1-4B93-8A7A-587D94E92301}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BB2DFF9A-264E-4DF4-996F-7A2C2747F805}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.Infrastructure", "src\MarketDepth.Infrastructure\MarketDepth.Infrastructure.csproj", "{469864FD-33C9-428D-9E83-343D9078D8BE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.UnitTests", "tests\MarketDepth.UnitTests\MarketDepth.UnitTests.csproj", "{D5A428C7-E8B1-4616-8A84-EFF984B87C97}"
@@ -17,9 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.Pub", "src\MarketDepth.Pub\MarketDepth.Pub.csproj", "{E47A03E7-C290-4AE7-A62C-51B804AED135}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BB2DFF9A-264E-4DF4-996F-7A2C2747F805}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.Sub", "src\MarketDepth.Sub\MarketDepth.Sub.csproj", "{6F431C79-8E08-436A-A078-80132C05347A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDepth.Sub.WsServer", "src\MarketDepth.Sub.WsServer\MarketDepth.Sub.WsServer.csproj", "{6F431C79-8E08-436A-A078-80132C05347A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

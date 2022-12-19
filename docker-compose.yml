@@ -23,11 +23,15 @@ services:
     depends_on:
       - nats
 
-  marketdepth.sub:
-    image: ${DOCKER_REGISTRY-}marketdepthsub
+  marketdepth.ws:
+    image: ${DOCKER_REGISTRY-}marketdepthsubwss
     build:
       context: .
-      dockerfile: src/MarketDepth.Sub/Dockerfile
+      dockerfile: src/MarketDepth.Sub.WsServer/Dockerfile
+    expose:
+      - "5050"
+    ports:
+      - "5050:5050"
     env_file:
       - .env
     depends_on:

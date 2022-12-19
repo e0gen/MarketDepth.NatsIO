@@ -42,7 +42,7 @@ namespace MarketDepth.Infrastructure.Services
                 _c = CreateConnection();
 
             var subOpts = StanSubscriptionOptions.GetDefaultOptions();
-            subOpts.DeliverAllAvailable();
+            subOpts.StartWithLastReceived();
 
             var s = _c.Subscribe(_config.Channel, subOpts, (obj, args) =>
             {
@@ -51,7 +51,7 @@ namespace MarketDepth.Infrastructure.Services
                 messageHandler(args.Message.Data);
             });
 
-            if(!ct.IsCancellationRequested)
+            while(!ct.IsCancellationRequested)
             {
                 await Task.Delay(1000);
             }
@@ -72,7 +72,6 @@ namespace MarketDepth.Infrastructure.Services
                     args.GUID, args.Error);
             }
 
-            // handle success - correlate the send with the guid..
             Console.WriteLine("Published msg {0} was stored on the server.", args.GUID);
         }
 
