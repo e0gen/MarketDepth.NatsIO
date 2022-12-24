@@ -1,5 +1,6 @@
 ﻿global using Microsoft.Extensions.Options;
 global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Logging;
 global using Mapster;
 global using MarketDepth.Domain.Models;
 global using MarketDepth.Application.Contracts;

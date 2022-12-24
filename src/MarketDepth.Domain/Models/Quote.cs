@@ -3,6 +3,6 @@
     public struct Quote
     {
         public decimal Price { get; set; }
-        public decimal Quatity { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

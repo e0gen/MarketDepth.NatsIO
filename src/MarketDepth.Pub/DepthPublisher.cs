@@ -27,7 +27,7 @@ namespace MarketDepth.Pub
         {
             _exchangeSocketGuid = _exchangeSocketClient.ConnectToDepthWebSocket(_symbol, async (depthData) =>
             {
-                Console.WriteLine($"[Binance Event]: {depthData.EventType} {depthData.EventTime} {depthData.Symbol} {depthData.UpdateId}");
+                Console.WriteLine($"[Binance Event]: {depthData.EventType} {depthData.EventTime} {depthData.Data.Symbol} {depthData.Data.UpdateId}");
 
                 var payload = JsonSerializer.SerializeToUtf8Bytes(depthData, depthData.GetType());
 

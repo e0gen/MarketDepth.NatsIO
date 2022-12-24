@@ -2,15 +2,18 @@
 
 namespace MarketDepth.Infrastructure.Services
 {
-    public class NatsStreamingClient : IMessageBusClient
+    public sealed class NatsStreamingClient : IMessageBusClient
     {
+        private readonly ILogger<BinanceWebSocketClient> _logger;
         private Settings _config;
         private StanConnectionFactory _cf;
         private IStanConnection _c;
 
-        public NatsStreamingClient(IOptions<Settings> options, 
+        public NatsStreamingClient(ILogger<BinanceWebSocketClient> logger,
+            IOptions<Settings> options, 
             IConfiguration config)
         {
+            _logger = logger;
             _config = options.Value;
             _config.NatsUrl ??= config.GetVarFromEnvironment("NATS_URL");
             _config.Channel ??= config.GetVarFromEnvironment("NATS_CHANNEL");
@@ -46,7 +49,7 @@ namespace MarketDepth.Infrastructure.Services
 
             var s = _c.Subscribe(_config.Channel, subOpts, (obj, args) =>
             {
-                Console.WriteLine("Received a message");
+                _logger.LogTrace("Received a message");
 
                 messageHandler(args.Message.Data);
             });
@@ -68,11 +71,11 @@ namespace MarketDepth.Infrastructure.Services
         {
             if (!string.IsNullOrEmpty(args.Error))
             {
-                Console.WriteLine("Published Msg {0} failed: {1}",
+                _logger.LogError("Published Msg {0} failed: {1}",
                     args.GUID, args.Error);
             }
 
-            Console.WriteLine("Published msg {0} was stored on the server.", args.GUID);
+            _logger.LogTrace("Published msg {0} was stored on the server.", args.GUID);
         }
 
         public class Settings

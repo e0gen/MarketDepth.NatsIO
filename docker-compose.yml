@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   nats:
-    image: nats-streaming:latest
+    image: nats-streaming:0.25.2
     entrypoint:
       - /nats-streaming-server
       - -cid
@@ -14,7 +14,7 @@ services:
     tty: true
 
   marketdepth.pub:
-    image: ${DOCKER_REGISTRY-}marketdepthpub
+    image: ${DOCKER_REGISTRY-}pub
     build:
       context: .
       dockerfile: src/MarketDepth.Pub/Dockerfile
@@ -23,8 +23,8 @@ services:
     depends_on:
       - nats
 
-  marketdepth.ws:
-    image: ${DOCKER_REGISTRY-}marketdepthsubwss
+  marketdepth.wss:
+    image: ${DOCKER_REGISTRY-}wss
     build:
       context: .
       dockerfile: src/MarketDepth.Sub.WsServer/Dockerfile
