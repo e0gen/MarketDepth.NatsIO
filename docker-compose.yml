@@ -36,3 +36,15 @@ services:
       - .env
     depends_on:
       - nats
+
+  marketdepth.webui:
+    image: ${DOCKER_REGISTRY-}webui
+    build:
+      context: ./src/MarketDepth.ClientUI
+      dockerfile: Dockerfile
+    expose:
+      - "4004"
+    ports:
+      - "4004:80"
+    env_file:
+      - .env
